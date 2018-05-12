@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Promise wrapper around cross-sqlcipher",
   "main": "index.js",
+  "repository": "git://github.com/michael-ts/cross-sqlcipher-promise",    
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
