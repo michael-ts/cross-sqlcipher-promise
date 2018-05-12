@@ -6,12 +6,38 @@ function Database(name) {
     var all = db.all
     var exec = db.exec
     var run = db.run
+    var prepare = db.prepare
     for (i in db) {
 	(function(f,i,who) {
 	    who[i] = function() {
 		f.apply(db,arguments)
 	    }
 	})(db[i],i,this)
+    }
+    this.prepare = function(sql,params) {
+	if (!params) params=[]
+	return new Promise(function(resolve, reject) {
+	    var stmt = prepare.apply(db,[sql,params,function(err) {
+		if (err) {
+		    reject(err)
+		} else {
+		    var stmt_run = stmt.run
+		    stmt.run = function (params) {
+			if (!params) params=[]
+			return new Promise(function(resolve, reject) {
+			    stmt_run.apply(stmt,[params,function(err) {
+				if (err) {
+				    reject(err)
+				} else {
+				    resolve(stmt)
+				}
+			    }])
+			})    
+		    }
+		    resolve(stmt)
+		}
+	    }])
+	})
     }
     this.get = function(sql,params) {
 	if (!params) params=[]

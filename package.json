@@ -1,6 +1,6 @@
 {
   "name": "cross-sqlcipher-promise",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Promise wrapper around cross-sqlcipher",
   "main": "index.js",
   "repository": "git://github.com/michael-ts/cross-sqlcipher-promise",    
