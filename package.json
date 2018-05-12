@@ -1,0 +1,14 @@
+{
+  "name": "cross-sqlcipher-promise",
+  "version": "1.0.0",
+  "description": "Promise wrapper around cross-sqlcipher",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael Schmidt",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "cross-sqlcipher": "0.0.2"
+  }
+}
