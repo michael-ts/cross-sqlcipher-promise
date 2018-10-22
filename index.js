@@ -7,12 +7,20 @@ function Database(name) {
     var exec = db.exec
     var run = db.run
     var prepare = db.prepare
+    var close = db.close
     for (i in db) {
 	(function(f,i,who) {
 	    who[i] = function() {
 		f.apply(db,arguments)
 	    }
 	})(db[i],i,this)
+    }
+    this.close = function() {
+	return new Promise(function(resolve, reject) {
+	    close.apply(db,[function() {
+		resolve()
+	    }])
+	})
     }
     this.prepare = function(sql,params) {
 	if (!params) params=[]
